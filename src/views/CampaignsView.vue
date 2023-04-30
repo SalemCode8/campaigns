@@ -54,7 +54,7 @@ const deleteCampaign = (campaign) => {
                     {{ campaign.event }}
                 </td>
                 <td class="px-6 py-4">
-                    $2999
+                    {{ campaign.action }}
                 </td>
                 <td class="px-6 py-4">
                     <button

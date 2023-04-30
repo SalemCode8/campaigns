@@ -7,7 +7,7 @@ export type State = {
   all: Array<Campaign>
 }
 
-export const state: State = {
+const state: State = {
   all: [],
 }
 
@@ -15,7 +15,7 @@ export interface Mutations {
 
 }
 
-export const mutations: MutationTree<State> = {
+const mutations: MutationTree<State> = {
   setCampaigns(state, campaigns: Campaign[]){
     state.all = campaigns;
   },
@@ -36,7 +36,7 @@ export interface Actions {
   getAllCampaigns: ActionHandler<State, RootState>;
 }
 
-export const actions: ActionTree<State, RootState> & Actions = {
+const actions: ActionTree<State, RootState> & Actions = {
   async getAllCampaigns({ commit }) {
     const campaigns = await campaignApi.getCampaigns();
     commit('setCampaigns', campaigns);
@@ -49,4 +49,11 @@ export const actions: ActionTree<State, RootState> & Actions = {
     await campaignApi.deleteCampaign(payload);
     commit('removeCampaign', payload)
   }
+}
+
+export default {
+  namespaced: true,
+  state,
+  mutations,
+  actions,
 }

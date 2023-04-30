@@ -1,6 +1,21 @@
 <script setup lang="ts">
 
 import CreateCampaignModal from "@/components/CreateCampaignModal.vue";
+import { computed, ref } from "vue";
+import { useStore } from "vuex";
+
+const modalOpen = ref(false);
+
+const store = useStore()
+
+store.dispatch('campaigns/getAllCampaigns')
+
+const campaigns = computed(() => store.state.campaigns.all)
+
+
+const deleteCampaign = (campaign) => {
+    store.dispatch('campaigns/removeCampaign', campaign)
+}
 </script>
 
 <template>
@@ -13,60 +28,39 @@ import CreateCampaignModal from "@/components/CreateCampaignModal.vue";
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    Product name
+                    Name
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Color
+                    Type
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Category
+                    Event
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Price
+                    Action
                 </th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <tr v-for="campaign in campaigns" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Apple MacBook Pro 17"
+                    {{ campaign.name }}
                 </th>
                 <td class="px-6 py-4">
-                    Silver
+                    {{ campaign.type }}
                 </td>
                 <td class="px-6 py-4">
-                    Laptop
+                    {{ campaign.event }}
                 </td>
                 <td class="px-6 py-4">
                     $2999
                 </td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Microsoft Surface Pro
-                </th>
                 <td class="px-6 py-4">
-                    White
-                </td>
-                <td class="px-6 py-4">
-                    Laptop PC
-                </td>
-                <td class="px-6 py-4">
-                    $1999
-                </td>
-            </tr>
-            <tr class="bg-white dark:bg-gray-800">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Magic Mouse 2
-                </th>
-                <td class="px-6 py-4">
-                    Black
-                </td>
-                <td class="px-6 py-4">
-                    Accessories
-                </td>
-                <td class="px-6 py-4">
-                    $99
+                    <button
+                      class="inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto bg-red-700 hover:bg-red-500"
+                      @click="() => deleteCampaign(campaign)"
+                      >Delete</button>
                 </td>
             </tr>
         </tbody>

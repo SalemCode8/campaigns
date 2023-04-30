@@ -19,8 +19,8 @@ const deleteCampaign = (campaign) => {
 </script>
 
 <template>
-<CreateCampaignModal></CreateCampaignModal>
-    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-5">
+<CreateCampaignModal :open="modalOpen" @hide="modalOpen = false"/>
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-5" @click="modalOpen = true">
         Create Campaign
     </button>
 <div class="relative overflow-x-auto">

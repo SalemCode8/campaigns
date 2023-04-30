@@ -1,10 +1,10 @@
 import { describe, beforeEach, vi, it, expect } from 'vitest'
-import { mutations, actions } from "@/store/modules/campaigns";
+import campaignsModule from "@/store/modules/campaigns";
 import campaignApi from "@/api/campaign";
 import { Campaign } from "../../@types/campaigns";
 
 
-
+const { mutations, actions } = campaignsModule
 const campaign: Campaign = {
   "name": "Campaign2",
   "type": "Type 2",

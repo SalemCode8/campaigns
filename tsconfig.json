@@ -1,7 +1,9 @@
 {
   "files": [],
   "compilerOptions": {
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "target": "esnext",
+    "module": "esnext",
   },
   "references": [
     {

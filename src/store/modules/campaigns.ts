@@ -29,7 +29,7 @@ export const mutations: MutationTree<State> = {
     })
   },
   removeCampaign(state, campaign: Campaign){
-    state.all.splice(state.all.indexOf(campaign));
+    state.all.splice(state.all.indexOf(campaign), 1);
   }
 }
 export interface Actions {
@@ -47,6 +47,6 @@ export const actions: ActionTree<State, RootState> & Actions = {
   },
   async removeCampaign({ commit }, payload: Campaign) {
     await campaignApi.deleteCampaign(payload);
-    commit('deleteCampaign', payload)
+    commit('removeCampaign', payload)
   }
 }

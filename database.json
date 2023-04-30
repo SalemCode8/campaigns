@@ -1,0 +1,11 @@
+{
+  "campaigns": [
+    {
+      "id": 1,
+      "name": "Campaign 1",
+      "event": "Event 1",
+      "type": "Type 1",
+      "action": "Action 1"
+    }
+  ]
+}
